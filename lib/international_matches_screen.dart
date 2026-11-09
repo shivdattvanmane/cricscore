@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:itr_proj/app_config.dart';
 import 'package:itr_proj/flag_helper.dart';
 import 'package:itr_proj/theme.dart';
 
@@ -34,7 +35,7 @@ class _InternationalMatchesScreenState extends State<InternationalMatchesScreen>
 
     try {
       final response = await http.get(Uri.parse(
-          'https://api.cricapi.com/v1/currentMatches?apikey=27dfcd8c-bcbe-4608-87c7-c998839ab680&offset=0'));
+          'https://api.cricapi.com/v1/currentMatches?apikey=${AppConfig.cricApiMatchKey}&offset=0'));
       if (response.statusCode == 200) {
         final decoded = jsonDecode(response.body);
         final data = decoded['data'] as List<dynamic>? ?? [];
